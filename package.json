@@ -1,0 +1,28 @@
+{
+  "name": "cordova-plugin-native-ringtones",
+  "version": "0.0.1",
+  "description": "The plugin helps get the native ringtones list on Android or IOS devices. You can use this plugin to get three types of ringtones on Native device: TYPE_ALARM, TYPE_NOTIFICATION, TYPE_RINGTONE.",
+  "cordova": {
+    "id": "cordova-plugin-native-ringtones",
+    "platforms": [
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TongZhangzt/cordova-plugin-native-ringtones.git"
+  },
+  "keywords": [
+    "cordova",
+    "native ringtones",
+    "ringtone list",
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "author": "Tong Zhang",
+  "license": "Apache 2.0",
+  "bugs": {
+    "url": "https://github.com/TongZhangzt/cordova-plugin-native-ringtones/issues"
+  },
+  "homepage": "https://github.com/TongZhangzt/cordova-plugin-native-ringtones#readme"
+}

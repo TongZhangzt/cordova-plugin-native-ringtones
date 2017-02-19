@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<plugin id="cordova-plugin-native-ringtones" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <name>NativeRingtones</name>
+    <description>The plugin helps get the native ringtones list on Android or IOS devices. You can use this plugin to get three types of ringtones on Native device: TYPE_ALARM, TYPE_NOTIFICATION, TYPE_RINGTONE.</description>
+
+    <author>Tong Zhang</author>
+
+    <keywords>cordova, native ringtones, ringtone list</keywords>
+
+    <repo>https://github.com/TongZhangzt/cordova-plugin-native-ringtones</repo>
+
+    <issue>https://github.com/TongZhangzt/cordova-plugin-native-ringtones/issues</issue>
+
+    <license>Apache 2.0</license>
+
+    <js-module name="NativeRingtones" src="www/NativeRingtones.js">
+        <clobbers target="cordova.plugins.NativeRingtones" />
+    </js-module>
+
+    <!-- Android -->
+    <platform name="android">
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="NativeRingtones">
+                <param name="android-package" value="cordova-plugin-native-ringtones.NativeRingtones" />
+            </feature>
+        </config-file>
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+            <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+        </config-file>
+        <source-file src="src/android/NativeRingtones.java" target-dir="src/cordova-plugin-native-ringtones/NativeRingtones" />
+    </platform>
+</plugin>
