@@ -1,4 +1,4 @@
-package cordova.plugin.native.ringtones;
+package cordova-plugin-native-ringtones;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;

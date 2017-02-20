@@ -23,7 +23,7 @@
     <platform name="android">
         <config-file parent="/*" target="res/xml/config.xml">
             <feature name="NativeRingtones">
-                <param name="android-package" value="cordova.plugin.native.ringtones.NativeRingtones" />
+                <param name="android-package" value="cordova-plugin-native-ringtones.NativeRingtones" />
             </feature>
         </config-file>
         <config-file target="AndroidManifest.xml" parent="/*">
