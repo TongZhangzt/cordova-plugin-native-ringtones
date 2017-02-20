@@ -28,16 +28,23 @@ public class NativeRingtones extends CordovaPlugin {
     public boolean execute(String action, JSONArray args,
             CallbackContext callbackContext) throws JSONException {
         if (action.equals("get")){
-            return this.get(callbackContext);
+            return this.get(args.getString(0), callbackContext);
         }
 
         return false;
     }
 
-  private boolean get(final CallbackContext callbackContext) throws JSONException {
+  private boolean get(String ringtoneType, final CallbackContext callbackContext) {
         RingtoneManager manager = new RingtoneManager(this.cordova.getActivity().getBaseContext());
-        manager.setType(RingtoneManager.TYPE_NOTIFICATION);
 
+        if (ringtoneType == "alarm") {
+            manager.setType(RingtoneManager.TYPE_ALARM);
+        } else if (ringtoneType == "notification"){
+            manager.setType(RingtoneManager.TYPE_NOTIFICATION);
+        } else {
+            manager.setType(RingtoneManager.TYPE_RINGTONE);
+        }
+        
         Cursor cursor = manager.getCursor();
         Map<String, String> list = new HashMap<String, String>();
 

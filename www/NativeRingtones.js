@@ -11,7 +11,7 @@ function RingtoneManager() {
  * @param {Object}
  *            Set the ringtone list to the attribute ringtoneList of the object
  */
-RingtoneManager.prototype.getRingtone = function(ringtones) {
+RingtoneManager.prototype.getRingtone = function(ringtones, ringtoneType) {
 	ringtones.ringtoneList = {};
 	
     exec(function(success) {
@@ -19,7 +19,7 @@ RingtoneManager.prototype.getRingtone = function(ringtones) {
         },
         function(err) {
             console.log(err);
-        }, "Ringtone", "get");
+        }, "NativeRingtones", "get", [ringtoneType]);
 };
 
 module.exports = new RingtoneManager();
