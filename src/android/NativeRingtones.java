@@ -34,45 +34,47 @@ public class NativeRingtones extends CordovaPlugin {
         return false;
     }
 
-  private boolean get(String ringtoneType, final CallbackContext callbackContext) {
+  private boolean get(String ringtoneType, final CallbackContext callbackContext) throws JSONException{
         RingtoneManager manager = new RingtoneManager(this.cordova.getActivity().getBaseContext());
 
+        //The default value if ringtone type is "notification"
         if (ringtoneType == "alarm") {
             manager.setType(RingtoneManager.TYPE_ALARM);
-        } else if (ringtoneType == "notification"){
-            manager.setType(RingtoneManager.TYPE_NOTIFICATION);
-        } else {
+        } else if (ringtoneType == "ringtone"){
             manager.setType(RingtoneManager.TYPE_RINGTONE);
+        } else {
+            manager.setType(RingtoneManager.TYPE_NOTIFICATION);
         }
-        
+
         Cursor cursor = manager.getCursor();
-        Map<String, String> list = new HashMap<String, String>();
+        JSONArray ringtoneList = new JSONArray();
 
         while (cursor.moveToNext()) {
             String notificationTitle = cursor.getString(RingtoneManager.TITLE_COLUMN_INDEX);
             String notificationUri = cursor.getString(RingtoneManager.URI_COLUMN_INDEX) + "/" + cursor.getString(RingtoneManager.ID_COLUMN_INDEX);
-        
+
             /****   Transfer Content URI to file URI   ******* /
             /* String filePath;
 
             if (notificationUri != null && "content".equals(notificationUri.getScheme())) {
-                Cursor cursor1 = this.cordova.getActivity().getBaseContext().getContentResolver().query(notificationUri, new String[] { 
-                    android.provider.MediaStore.Images.ImageColumns.DATA 
+                Cursor cursor1 = this.cordova.getActivity().getBaseContext().getContentResolver().query(notificationUri, new String[] {
+                    android.provider.MediaStore.Images.ImageColumns.DATA
                 }, null, null, null);
-                cursor1.moveToFirst();   
+                cursor1.moveToFirst();
                 filePath = cursor1.getString(0);
                 cursor1.close();
             } else {
                 filePath = notificationUri.getPath();
             }*/
 
-            list.put(notificationTitle, notificationUri);
+            JSONObject json = new JSONObject();
+            json.put(notificationTitle, notificationUri);
+
+            ringtoneList.put(json);
         }
 
-        JSONObject json = new JSONObject(list);
-
-        if (list.toString() != null) {
-            callbackContext.success(json);
+        if (ringtoneList.length() > 0) {
+            callbackContext.success(ringtoneList);
         } else {
             callbackContext.error("Can't get system Ringtone list");
         }

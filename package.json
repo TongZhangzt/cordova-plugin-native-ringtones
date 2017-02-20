@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-native-ringtones",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Get the native ringtone list on Android/IOS devices.",
   "cordova": {
     "id": "cordova-plugin-native-ringtones",
