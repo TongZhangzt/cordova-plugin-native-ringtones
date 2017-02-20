@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-native-ringtones",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "The plugin helps get the native ringtones list on Android or IOS devices. You can use this plugin to get three types of ringtones on Native device: TYPE_ALARM, TYPE_NOTIFICATION, TYPE_RINGTONE.",
   "cordova": {
     "id": "cordova-plugin-native-ringtones",
