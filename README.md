@@ -1,6 +1,6 @@
 # cordova-plugin-native-ringtones [![npm version](https://badge.fury.io/js/cordova-plugin-native-ringtones.svg)](https://badge.fury.io/js/cordova-plugin-native-ringtones)
 
-Plugin for the [Cordova][https://cordova.apache.org] framework to get the native ringtone list.
+Plugin for the [Cordova](https://cordova.apache.org) framework to get the native ringtone list.
 
 The plugin helps get the native ringtones list on Android or IOS devices. You can use this plugin to get three types of ringtones on Native device: TYPE_ALARM, TYPE_NOTIFICATION, TYPE_RINGTONE.
 
@@ -10,7 +10,7 @@ The plugin helps get the native ringtones list on Android or IOS devices. You ca
 Support for IOS platform will be updated.
 
 ## Installation
-The plugin can be installed via Cordova-CLI and is publicly available on [NPM][https://www.npmjs.com/package/cordova-plugin-native-ringtones].
+The plugin can be installed via Cordova-CLI and is publicly available on [NPM](https://www.npmjs.com/package/cordova-plugin-native-ringtones).
 
 Execute from the projects root folder:
 
@@ -41,5 +41,5 @@ document.addEventListener('deviceready', function () {
 
 ## License
 
-This software is released under the [Apache 2.0 License][http://opensource.org/licenses/Apache-2.0].
+This software is released under the [Apache 2.0 License](http://opensource.org/licenses/Apache-2.0).
 
