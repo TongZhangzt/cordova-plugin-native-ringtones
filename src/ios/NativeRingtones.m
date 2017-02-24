@@ -1,12 +1,9 @@
 /********* NativeRingtones.m Cordova Plugin Implementation *******/
 
-#import "NativeRingtones.h"
 #import <Cordova/CDV.h>
 #import <UIKit/UIKit.h>
 #import <AudioToolbox/AudioToolbox.h>
 #import <Foundation/Foundation.h>
-
-NSString* const DEFAULT_SOUND = @"res://platform_default";
 
 @interface NativeRingtones : CDVPlugin {
   // Member variables go here.
@@ -49,22 +46,24 @@ NSString* const DEFAULT_SOUND = @"res://platform_default";
             // handle error
         }
         else if (! [isDirectory boolValue]) {
-            NSString *myString = url.absoluteString;
-            [audioFileList addObject:[myString pathComponents].lastObject];
+            //Get sound url
+            NSString *soundUrl = url.absoluteString;
 
-            SystemSoundID soundID;
-            AudioServicesCreateSystemSoundID((__bridge_retained CFURLRef)url, &soundID);
+            //Get sound name
+            NSString *last = [soundUrl pathComponents].lastObject;
+            NSArray *Array = [last componentsSeparatedByString:@"."];
+            NSString *soundName = [Array objectAtIndex:0];
 
-            SoundInfomation *sound = [[SoundInfomation alloc] init];
-            sound.soundID   = soundID;
-            sound.soundUrl  = url;
-            sound.soundName = url.lastPathComponent;
+            //Get sound store file category
+            NSString *category = [[soundUrl stringByDeletingLastPathComponent] lastPathComponent];
 
-            [_systemSounds addObject:sound];
+            NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:soundName,@"Name",soundUrl,@"Url",category, @"Category", nil];
+
+            [_systemSounds addObject:dic2];
         }
     }
 
-    if (DEFAULT_SOUND != nil) {
+    if (_systemSounds != nil) {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsArray:_systemSounds];
     } else {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];

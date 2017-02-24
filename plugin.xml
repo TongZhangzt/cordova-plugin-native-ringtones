@@ -30,6 +30,5 @@
             </feature>
         </config-file>
         <source-file src="src/ios/NativeRingtones.m" />
-        <header-file src="src/ios/NativeRingtones.h" />
     </platform>
 </plugin>
