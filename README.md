@@ -2,12 +2,11 @@
 
 Plugin for the [Cordova](https://cordova.apache.org) framework to get the native ringtone list.
 
-The plugin helps get the native ringtones list on Android or IOS devices. You can use this plugin to get three types of ringtones on Native device: TYPE_ALARM, TYPE_NOTIFICATION, TYPE_RINGTONE.
+The plugin helps get the native ringtones list on Android or IOS devices. 
 
 ## Supported Platforms
-- __Android__
-
-Support for IOS platform will be updated.
+- __iOS__ 
+- __Android__ 
 
 ## Installation
 The plugin can be installed via Cordova-CLI and is publicly available on [NPM](https://www.npmjs.com/package/cordova-plugin-native-ringtones).
@@ -27,10 +26,10 @@ Or install the latest head version:
 ## Usage
 The plugin creates the object `cordova.plugins.NativeRingtones` and is accessible after the *deviceready* event has been fired.
 
-You can call the function getRingtone to get the ringtone list. There are three parameters for this function:  
-1. successCallback function: The cordova plugin will pass the ringtone list by the `success` object in this function.  
+You can call the function getRingtone to get the ringtone list. There are two/three parameters for this function:  
+1. successCallback function: The cordova plugin will pass the ringtone list by the `success` object and the ringtone list is put in an array, each object in this array represent a ringtone (with name, url and category).  
 2. errorCallback function: The function that will be called if the getRingtone failed.  
-3. An string value to indicate the ringtone type. There are three kinds of ringtones for `Android`: 'notification', 'alarm', 'ringtone'. The default value is *'notification'*.
+3. (just for Android) An string value to indicate the ringtone type. There are three kinds of ringtones for `Android`: 'notification', 'alarm', 'ringtone'. The default value is *'notification'*.
 
 ```js
 document.addEventListener('deviceready', function () {
