@@ -47,7 +47,8 @@
         }
         else if (! [isDirectory boolValue]) {
             //Get sound url
-            NSString *soundUrl = url.absoluteString;
+            NSString *soundUrl = [url.absoluteString stringByReplacingOccurrencesOfString:@"file://"
+                                                                               withString:@""];
 
             //Get sound name
             NSString *last = [soundUrl pathComponents].lastObject;
@@ -62,6 +63,30 @@
             [_systemSounds addObject:dic2];
         }
     }
+
+/***   Test for store file to local folder
+     NSData *fileData;
+　　 fileData = [[NSFileManager defaultManager] contentsAtPath:@"/System/Library/Audio/UISounds/photoShutter.caf"];
+
+     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
+
+     NSString* pathCreate = [[paths objectAtIndex:0] stringByAppendingString:@"/Sounds"];
+
+     NSString* pathCopy = [[paths objectAtIndex:0] stringByAppendingString:@"/Sounds/photoShutter.caf"];
+
+     NSError *errorw1;
+     NSError *errorw2;
+
+     bool createDirectory = [[NSFileManager defaultManager] createDirectoryAtPath:pathCreate withIntermediateDirectories:YES attributes:nil error:&errorw1];
+
+     bool existFile = [[NSFileManager defaultManager] fileExistsAtPath:pathCopy];
+
+     if (existFile) {
+       [[NSFileManager defaultManager] removeItemAtPath:pathCopy error:&errorw1];
+     }
+
+     bool success = [[NSFileManager defaultManager] copyItemAtPath:@"/System/Library/Audio/UISounds/photoShutter.caf" toPath:pathCopy error:&errorw2];
+****/
 
     if (_systemSounds != nil) {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsArray:_systemSounds];
