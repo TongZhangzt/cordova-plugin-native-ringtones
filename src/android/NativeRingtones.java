@@ -68,7 +68,8 @@ public class NativeRingtones extends CordovaPlugin {
             }*/
 
             JSONObject json = new JSONObject();
-            json.put(notificationTitle, notificationUri);
+            json.put("Name", notificationTitle);
+            json.put("Url", notificationUri);
 
             ringtoneList.put(json);
         }
