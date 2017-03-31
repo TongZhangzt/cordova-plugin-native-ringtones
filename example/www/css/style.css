@@ -1,0 +1,12 @@
+/* Empty. Add your own CSS if you like */
+.list {
+height: 40px;
+text-align: center;
+margin:0 auto;
+}
+.flexbox{
+display: flex;
+flex-direction: column;
+justify-content: flex-start;
+align-items: center;
+}
