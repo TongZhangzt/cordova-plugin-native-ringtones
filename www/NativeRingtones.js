@@ -15,4 +15,12 @@ RingtoneManager.prototype.getRingtone = function(successCallback, errorCallback,
     exec(successCallback, errorCallback, "NativeRingtones", "get", [ringtoneType]);
 };
 
+RingtoneManager.prototype.playRingtone = function(successCallback, errorCallback, ringtoneUri) {
+    exec(successCallback, errorCallback, "NativeRingtones", "play", [ringtoneUri]);
+};
+
+RingtoneManager.prototype.stopRingtone = function(successCallback, errorCallback, ringtoneUri) {
+    exec(successCallback, errorCallback, "NativeRingtones", "stop", [ringtoneUri]);
+};
+
 module.exports = new RingtoneManager();
