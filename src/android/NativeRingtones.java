@@ -89,7 +89,7 @@ public class NativeRingtones extends CordovaPlugin {
     }
 
     private boolean play(String ringtoneUri, final CallbackContext callbackContext) throws JSONException{
-        Ringtone ringtoneSound = RingtoneManager.getRingtone(this.cordova.getActivity().getBaseContext(), ringtoneUri);
+        Ringtone ringtoneSound = RingtoneManager.getRingtone(this.cordova.getActivity().getApplicationContext(), Uri.parse(ringtoneUri));
 
         if (ringtoneSound != null) {
             ringtoneSound.play();
@@ -102,7 +102,7 @@ public class NativeRingtones extends CordovaPlugin {
     }
 
     private boolean stop(String ringtoneUri, final CallbackContext callbackContext) throws JSONException{
-        Ringtone ringtoneSound = RingtoneManager.getRingtone(this.cordova.getActivity().getBaseContext(), ringtoneUri);
+        Ringtone ringtoneSound = RingtoneManager.getRingtone(this.cordova.getActivity().getApplicationContext(), Uri.parse(ringtoneUri));
 
         if (ringtoneSound != null) {
             ringtoneSound.stop();
