@@ -10,6 +10,8 @@
 }
 
 - (void)get:(CDVInvokedUrlCommand*)command;
+- (void)play:(CDVInvokedUrlCommand*)command;
+- (void)stop:(CDVInvokedUrlCommand*)command;
 @end
 
 @implementation NativeRingtones
@@ -95,6 +97,46 @@
     }
 
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+
+- (void)play:(CDVInvokedUrlCommand*)command
+{
+  CDVPluginResult* pluginResult = nil;
+
+  NSString* ringtoneUri = [command argumentAtIndex:0];
+
+  NSURL *fileURL = [NSURL URLWithString:ringtoneUri];
+  SystemSoundID soundID;
+  AudioServicesCreateSystemSoundID((__bridge_retained CFURLRef)fileURL,&soundID);
+
+  if (soundID) {
+      AudioServicesPlaySystemSound(soundID);
+      pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+  } else {
+      pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
+  }
+
+  [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+
+- (void)stop:(CDVInvokedUrlCommand*)command
+{
+  CDVPluginResult* pluginResult = nil;
+
+  NSString* ringtoneUri = [command argumentAtIndex:0];
+
+  NSURL *fileURL = [NSURL URLWithString:ringtoneUri];
+  SystemSoundID soundID;
+  AudioServicesCreateSystemSoundID((__bridge_retained CFURLRef)fileURL,&soundID);
+
+  if (soundID) {
+      AudioServicesDisposeSystemSoundID(soundID);
+      pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+  } else {
+      pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
+  }
+
+  [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
 @end

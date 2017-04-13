@@ -16,7 +16,7 @@ RingtoneManager.prototype.getRingtone = function (successCallback, errorCallback
 };
 
 RingtoneManager.prototype.playRingtone = function (successCallback, errorCallback, ringtoneUri) {
-    if (ringtoneUri.indexOf("content") >= 0) {
+    if (ringtoneUri.indexOf("content") >= 0 || ringtoneUri.indexOf("System") >= 0) {
         exec(successCallback, errorCallback, "NativeRingtones", "play", [ringtoneUri]);
     }
     else {
@@ -34,7 +34,21 @@ RingtoneManager.prototype.playRingtone = function (successCallback, errorCallbac
 };
 
 RingtoneManager.prototype.stopRingtone = function (successCallback, errorCallback, ringtoneUri) {
-    exec(successCallback, errorCallback, "NativeRingtones", "stop", [ringtoneUri]);
+    if (ringtoneUri.indexOf("content") >= 0 || ringtoneUri.indexOf("System") >= 0) {
+        exec(successCallback, errorCallback, "NativeRingtones", "stop", [ringtoneUri]);
+    }
+    else {
+        var contentPath = window.location.pathname.substr(window.location.pathname, window.location.pathname.length - 10);
+        var path;
+        if (device.platform === "Android") {
+            path = "file://" + contentPath + ringtoneUri.substr(7, ringtoneUri.length - 1);
+        } else {
+            path = contentPath + ringtoneUri.substr(7, ringtoneUri.length - 1);
+        }
+        new Media(path, function (success) {
+            console.log(success);
+        }).stop();
+    }
 };
 
 module.exports = new RingtoneManager();
