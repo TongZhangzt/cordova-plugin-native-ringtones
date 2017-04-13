@@ -2,7 +2,7 @@
 
 Plugin for the [Cordova](https://cordova.apache.org) framework to get the native ringtone list.
 
-The plugin helps get the native ringtones list on Android or IOS devices. 
+The plugin helps get the native ringtones list on Android or IOS devices. And you can also use this plugin to play or stop the native ringtones and custom ringtones(added in the www folder).
 
 ## Supported Platforms
 - __iOS__ 
@@ -42,6 +42,20 @@ document.addEventListener('deviceready', function () {
             });
             //An object array contains all the ringtones
             setTimeout(function() { console.log(ringtones); }, 1000); 
+}, false);
+```
+
+You can call the function playRingtone or stopRingtone to play or stop a ringtone by passing the URI of this ringtone. This plugin allow you to play both native ringtones and custom ringtones.
+
+```js
+document.addEventListener('deviceready', function () {
+        var ringtones;
+        cordova.plugins.NativeRingtones.playRingtone(function(success) {
+                ringtones = success;
+            },
+            function(err) {
+                alert(err);
+            }, "/System/Library/Audio/UISounds/Modern/calendar_alert_chord.caf");
 }, false);
 ```
 
