@@ -21,7 +21,12 @@ RingtoneManager.prototype.playRingtone = function (successCallback, errorCallbac
     }
     else {
         var contentPath = window.location.pathname.substr(window.location.pathname, window.location.pathname.length - 10);
-        var path = "file://" + contentPath + ringtoneUri.substr(7, ringtoneUri.length - 1);
+        var path;
+        if (device.platform === "Android") {
+            path = "file://" + contentPath + ringtoneUri.substr(7, ringtoneUri.length - 1);
+        } else {
+            path = contentPath + ringtoneUri.substr(7, ringtoneUri.length - 1);
+        }
         new Media(path, function (success) {
             console.log(success);
         }).play();
