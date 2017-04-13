@@ -13,6 +13,7 @@ import android.content.ContentValues;
 import android.content.res.AssetManager;
 import android.media.RingtoneManager;
 import android.media.Ringtone;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -90,26 +91,26 @@ public class NativeRingtones extends CordovaPlugin {
     }
 
     private boolean play(String ringtoneUri, final CallbackContext callbackContext) throws JSONException{
-        Ringtone ringtoneSound = RingtoneManager.getRingtone(this.cordova.getActivity().getApplicationContext(), Uri.parse(ringtoneUri));
+        MediaPlayer ringtoneSound = MediaPlayer.create(this.cordova.getActivity().getApplicationContext(), Uri.parse(ringtoneUri));
 
         if (ringtoneSound != null) {
-            ringtoneSound.play();
+            ringtoneSound.start();
             callbackContext.success("Play the ringtone succennfully!");
         } else{
-            callbackContext.error("Can't play the ringtone!'");
+            callbackContext.error("Can't play the ringtone!");
         }
 
         return true;
     }
 
     private boolean stop(String ringtoneUri, final CallbackContext callbackContext) throws JSONException{
-        Ringtone ringtoneSound = RingtoneManager.getRingtone(this.cordova.getActivity().getApplicationContext(), Uri.parse(ringtoneUri));
+        MediaPlayer ringtoneSound = MediaPlayer.create(this.cordova.getActivity().getApplicationContext(), Uri.parse(ringtoneUri));
 
         if (ringtoneSound != null) {
             ringtoneSound.stop();
             callbackContext.success("Stop the ringtone succennfully!");
         } else{
-            callbackContext.error("Can't stop the ringtone!'");
+            callbackContext.error("Can't stop the ringtone!");
         }
 
         return true;
