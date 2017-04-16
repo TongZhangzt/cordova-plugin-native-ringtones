@@ -50,12 +50,7 @@ You can call the function playRingtone or stopRingtone to play or stop a rington
 ```js
 document.addEventListener('deviceready', function () {
         var ringtones;
-        cordova.plugins.NativeRingtones.playRingtone(function(success) {
-                ringtones = success;
-            },
-            function(err) {
-                alert(err);
-            }, "/System/Library/Audio/UISounds/Modern/calendar_alert_chord.caf");
+        cordova.plugins.NativeRingtones.playRingtone("/System/Library/Audio/UISounds/Modern/calendar_alert_chord.caf");
 }, false);
 ```
 

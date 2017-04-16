@@ -15,7 +15,13 @@ RingtoneManager.prototype.getRingtone = function (successCallback, errorCallback
     exec(successCallback, errorCallback, "NativeRingtones", "get", [ringtoneType]);
 };
 
-RingtoneManager.prototype.playRingtone = function (successCallback, errorCallback, ringtoneUri) {
+RingtoneManager.prototype.playRingtone = function (ringtoneUri, successCallback, errorCallback) {
+    if (!successCallback) {
+        successCallback = function (success) { };
+    }
+    if (!errorCallback) {
+        errorCallback = function (error) { };
+    }
     if (ringtoneUri.indexOf("content") >= 0 || ringtoneUri.indexOf("System") >= 0) {
         exec(successCallback, errorCallback, "NativeRingtones", "play", [ringtoneUri]);
     }
@@ -33,7 +39,13 @@ RingtoneManager.prototype.playRingtone = function (successCallback, errorCallbac
     }
 };
 
-RingtoneManager.prototype.stopRingtone = function (successCallback, errorCallback, ringtoneUri) {
+RingtoneManager.prototype.stopRingtone = function (ringtoneUri, successCallback, errorCallback) {
+    if (!successCallback) {
+        successCallback = function (success) { };
+    }
+    if (!errorCallback) {
+        errorCallback = function (error) { };
+    }
     if (ringtoneUri.indexOf("content") >= 0 || ringtoneUri.indexOf("System") >= 0) {
         exec(successCallback, errorCallback, "NativeRingtones", "stop", [ringtoneUri]);
     }
