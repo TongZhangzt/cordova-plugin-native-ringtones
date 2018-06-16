@@ -45,9 +45,9 @@ public class NativeRingtones extends CordovaPlugin {
         RingtoneManager manager = new RingtoneManager(this.cordova.getActivity().getBaseContext());
 
         //The default value if ringtone type is "notification"
-        if (ringtoneType == "alarm") {
+        if (ringtoneType.equals("alarm")) {
             manager.setType(RingtoneManager.TYPE_ALARM);
-        } else if (ringtoneType == "ringtone"){
+        } else if (ringtoneType.equals("ringtone")){
             manager.setType(RingtoneManager.TYPE_RINGTONE);
         } else {
             manager.setType(RingtoneManager.TYPE_NOTIFICATION);
